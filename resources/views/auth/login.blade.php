@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#000000">
@@ -38,10 +38,20 @@
                 <h4>Silahkan Login</h4>
             </div>
             <div class="section mt-1 mb-5">
-                <form action="app-pages.html">
+                @php
+                 $messagewarning = Session::get('warning');
+                @endphp
+
+                @if (Session::get('warning'))
+                <div class="alert alert-outline-warning">
+                    {{ $messagewarning }}
+                </div>
+                @endif
+                <form action="/proseslogin" method="POST">
+                    @csrf
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="email" class="form-control" id="email1" placeholder="Email address">
+                            <input type="text" name="nik" class="form-control" id="nik" placeholder="NIK">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -50,7 +60,7 @@
 
                     <div class="form-group boxed">
                         <div class="input-wrapper">
-                            <input type="password" class="form-control" id="password1" placeholder="Password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -58,7 +68,7 @@
                     </div>
 
                     <div class="form-links mt-2">
-                        
+
                         <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
                     </div>
 
